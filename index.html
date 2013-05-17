@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Google Analytics Poller (GAP) - More accurate measurements of your time on site and bounce rate</title>
+    <title>Google Analytics Poller (GAP) by rockymadden</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -25,13 +25,12 @@
           <li><a class="buttons github" href="https://github.com/rockymadden/gap">View On GitHub</a></li>
         </ul>
 
-        <p class="header">This project is maintained by <a class="header name" href="http://rockymadden.com">Rocky Madden</a></p>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/rockymadden">rockymadden</a></p>
 
 
       </header>
       <section>
-      	<h2>Overview</h2>
-        <p>If you are puzzled as to why you have so many of your users have a time on site of 0 to 10 seconds, GAP can help you. If you are puzzled as to why your bounce rate is so high, GAP can help you. If you want to accurately test changes to your website and how they truly affect user engagement, GAP can help you. The default implementation of the Google Analytics tracking code has these undesirable traits. The following scenarios help illustrate: </p>
+        <p>If you are puzzled as to why so many of your users have a time on site of 0 to 10 seconds, GAP can help you. If you are puzzled as to why your bounce rate is so high, GAP can help you. If you want to accurately test changes to your website and how they truly affect user engagement, GAP can help you. The default implementation of the Google Analytics tracking code has these undesirable traits. The following scenarios help illustrate: </p>
 
 <ul>
 <li>User A arrives on your website. She finds a wealth of information she is looking for on the first landing page. She spends 15 minutes reading and then departs. By default, this is considered a bounce.</li>
@@ -43,18 +42,18 @@
 
 <h2>Usage</h2>
 
-<p>There is no need to include any of the default Google Analytics tracking code. GAP takes care of all this for you.</p>
+<p>There is no need to include any of the default Google Analytics tracking code, as GAP takes care of all this for you. Simply <a href="https://raw.github.com/rockymadden/gap/master/gap.js">download the gap.js</a> file, place on your server, and update the noted fields below. That's it!</p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">_gap</span> <span class="o">=</span> <span class="nx">_gap</span> <span class="o">||</span> <span class="p">[];</span>
 <span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_setAccount"</span><span class="p">,</span> <span class="s2">"UA-XXXXXX-X"</span><span class="p">]);</span> <span class="c1">// CHANGE.</span>
 <span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_trackPageview"</span><span class="p">]);</span>
-<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackRead"</span><span class="p">,</span> <span class="s2">"10"</span><span class="p">]);</span> <span class="c1">// POLLING CADIENCE, CHANGE IF DESIRED.</span>
+<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackRead"</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span> <span class="c1">// POLLING CADIENCE, CHANGE IF DESIRED.</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">gap</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"script"</span><span class="p">);</span>
-    <span class="nx">gap</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">"text/javascript"</span><span class="p">;</span>
     <span class="nx">gap</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="nx">gap</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">"http://example.com/js/gap.js"</span><span class="p">;</span> <span class="c1">// CHANGE.</span>
+    <span class="nx">gap</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">"text/javascript"</span><span class="p">;</span>
+    <span class="nx">gap</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">"/js/gap.js"</span><span class="p">;</span> <span class="c1">// CHANGE.</span>
 
     <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"script"</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
     <span class="nx">s</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">gap</span><span class="p">,</span> <span class="nx">s</span><span class="p">);</span>
@@ -69,8 +68,21 @@
 
 <p><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a></p>
       </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-20432336-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
