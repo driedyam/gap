@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Google Analytics automatic Push (GAP) by rockymadden</title>
+    <title>Google Analytics automatic Push (GAP) - Automatic Google Analytics tracking of useful user events</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -25,11 +25,11 @@
           <li><a class="buttons github" href="https://github.com/rockymadden/gap">View On GitHub</a></li>
         </ul>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/rockymadden">rockymadden</a></p>
+        <p class="header">This project is maintained by <a class="header name" href="http://rockymadden.com/">Rocky Madden</a></p>
 
 
       </header>
-      <section>
+      <section><h2>Overview</h2>
         <p>A thin wrapper around the Google Analytics <code>_gaq</code> API which provides automatic tracking of useful user events.</p>
 
 <h2>Installation</h2>
@@ -85,21 +85,26 @@
 
 <p><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a></p>
       </section>
-      <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		          <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-20432336-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+		<script type="text/javascript">
+			var _gap = _gap || [];
+			_gap.push(["_setAccount", "UA-20432336-1"]);
+			_gap.push(["_trackPageview"]);
+			_gap.push(["_gapTrackReads", 10]);
+			_gap.push(["_gapTrackClicks"]);
+			_gapDebug = 1;
+
+			(function() {
+				var gap = document.createElement("script");
+				gap.async = true;
+				gap.type = "text/javascript";
+				gap.src = "http://rockymadden.com/js/gap.js";
+
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(gap, s);
+			})();
+		</script>
 
   </body>
 </html>
