@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Google Analytics automatic Push (GAP) - Automatic tracking of useful user events</title>
+    <title>Google Analytics automatic Push (GAP) by rockymadden</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -17,7 +17,7 @@
     <div class="wrapper">
       <header>
         <h1 class="header">Google Analytics automatic Push (GAP)</h1>
-        <p class="header">Automatic tracking of useful user events.</p>
+        <p class="header">Automatic Google Analytics tracking of user behavior.</p>
 
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/rockymadden/gap/zipball/master">Download ZIP</a></li>
@@ -25,19 +25,19 @@
           <li><a class="buttons github" href="https://github.com/rockymadden/gap">View On GitHub</a></li>
         </ul>
 
-        <p class="header">This project is maintained by <a class="header name" href="http://rockymadden.com/">Rocky Madden</a></p>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/rockymadden">rockymadden</a></p>
 
 
       </header>
-      <section><h2>Overview</h2>
-        <p>A thin wrapper around the Google Analytics <code>_gaq</code> API which provides automatic tracking of useful user events.</p>
+      <section>
+        <p>Dead simple wrapper around the Google Analytics <code>_gaq</code> API which provides automatic tracking of user behaviors via events.</p>
 
 <h2>Installation</h2>
 
 <p>There is no need to include any of the default Google Analytics tracking code, as GAP takes care of all this for you. Simply <a href="https://raw.github.com/rockymadden/gap/master/gap.js">download the gap.js</a> file, place on your server, and update the noted fields below. That's it!</p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">_gap</span> <span class="o">=</span> <span class="nx">_gap</span> <span class="o">||</span> <span class="p">[];</span>
-<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_setAccount"</span><span class="p">,</span> <span class="s2">"UA-XXXXXX-X"</span><span class="p">]);</span> <span class="c1">// CHANGE.</span>
+<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_setAccount"</span><span class="p">,</span> <span class="s2">"UA-XXXXXXXX-X"</span><span class="p">]);</span> <span class="c1">// CHANGE.</span>
 <span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_trackPageview"</span><span class="p">]);</span>
 <span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackReads"</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span>
 <span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackClicks"</span><span class="p">]);</span>
@@ -59,7 +59,7 @@
 
 <p>Logs <code>gapRead</code> events every n seconds. Each new event label is updated as time progresses. For instance, with a 10 second cadence the first event label would be 10, the second would be 20, and so on.</p>
 
-<p>If you are puzzled as to why so many of your users have a time on site of 0 seconds, this tracker can help you. If you are puzzled as to why your bounce rate is unnaturally high, this tracker can help you. If you want to accurately test changes to your website and how they truly affect user engagement, this tracker can help you. The default implementation of the Google Analytics tracking code has some undesirable traits. The following scenarios help illustrate: </p>
+<p>If you are puzzled as to why so many of your users have a time on site of 0 seconds, this tracker can help you. If you want to accurately test changes to your website and how they truly affect user engagement, this tracker can help you. The default implementation of the Google Analytics tracking code has some undesirable traits. The following scenarios help illustrate: </p>
 
 <ul>
 <li>User A arrives on your website. She finds a wealth of information she is looking for on the first landing page. She spends 15 minutes reading and then departs. By default, this is considered a bounce.</li>
@@ -70,11 +70,11 @@
 </ul><div class="highlight"><pre><span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackReads"</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span> <span class="c1">// Polling cadence can be changed.</span>
 </pre></div>
 
-<hr><p><strong>gapTrackClicks</strong></p>
+<hr><p><strong>gapTrackLinkClicks</strong></p>
 
-<p>Tracker which logs <code>a</code> and <code>button</code> mousedown events (i.e. user clicks) via event delegation. Event action logged is <code>gapClick</code>. Event label logged is <code>#{linkName} (#{linkURL})</code>.</p>
+<p>Tracker which logs <code>a</code> and <code>button</code> mousedown events (i.e. user clicks) via event delegation. Event action logged is <code>gapLinkClick</code>. Event label logged is <code>#{linkName} (#{linkURL})</code>.</p>
 
-<div class="highlight"><pre><span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackClicks"</span><span class="p">]);</span>
+<div class="highlight"><pre><span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackLinkClicks"</span><span class="p">]);</span>
 </pre></div>
 
 <h2>Versioning</h2>
@@ -85,26 +85,21 @@
 
 <p><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a></p>
       </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		<script type="text/javascript">
-			var _gap = _gap || [];
-			_gap.push(["_setAccount", "UA-20432336-1"]);
-			_gap.push(["_trackPageview"]);
-			_gap.push(["_gapTrackReads", 10]);
-			_gap.push(["_gapTrackClicks"]);
-			_gapDebug = 1;
-
-			(function() {
-				var gap = document.createElement("script");
-				gap.async = true;
-				gap.type = "text/javascript";
-				gap.src = "http://rockymadden.com/js/gap.js";
-
-				var s = document.getElementsByTagName("script")[0];
-				s.parentNode.insertBefore(gap, s);
-			})();
-		</script>
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-20432336-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
 
   </body>
 </html>
