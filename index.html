@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Google Analytics automatic Push (GAP) - Automatic Google Analytics tracking of user behavior</title>
+    <title>Google Analytics automatic Push (GAP) by rockymadden</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -22,25 +22,25 @@
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/rockymadden/gap/zipball/master">Download ZIP</a></li>
           <li class="download"><a class="buttons" href="https://github.com/rockymadden/gap/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/rockymadden/gap/issues?labels=accepted%2Cenhancement&state=open">Enhancements</a></li>
           <li><a class="buttons github" href="https://github.com/rockymadden/gap">View On GitHub</a></li>
         </ul>
 
-        <p class="header">This project is maintained by <a class="header name" href="http://rockymadden.com/">Rocky Madden</a></p>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/rockymadden">rockymadden</a></p>
 
 
       </header>
-      <section><h2>Overview</h2>
-        <p>Dead simple wrapper around the Google Analytics <code>_gaq</code> API which provides automatic tracking of user behaviors via events.</p>
+      <section>
+        <p>Dead simple wrapper around the Google Analytics API which provides automatic tracking of user behaviors via events.</p>
 
 <h2>Installation</h2>
 
 <p>There is no need to include any of the default Google Analytics tracking code, as GAP takes care of all this for you. Simply <a href="https://raw.github.com/rockymadden/gap/master/gap.js">download the gap.js</a> file, place on your server, and update the noted fields below. That's it!</p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">_gap</span> <span class="o">=</span> <span class="nx">_gap</span> <span class="o">||</span> <span class="p">[];</span>
-<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_setAccount"</span><span class="p">,</span> <span class="s2">"UA-XXXXXXXX-X"</span><span class="p">]);</span> <span class="c1">// CHANGE.</span>
+<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_setAccount"</span><span class="p">,</span> <span class="s2">"UA-XXXXXX-X"</span><span class="p">]);</span> <span class="c1">// CHANGE.</span>
 <span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_trackPageview"</span><span class="p">]);</span>
-<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackReads"</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span>
+<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackBounce"</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span>
+<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackReads"</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]);</span>
 <span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackClicks"</span><span class="p">]);</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -56,19 +56,39 @@
 
 <h2>Trackers</h2>
 
-<p><strong>gapTrackReads</strong></p>
+<p><strong>gapTrackBounce</strong></p>
+
+<p>Logs a single <code>gapBounce</code> event after n seconds. </p>
+
+<p>If you do not consider users who spend long durations, or even minutes, on their first and only page visit on your website a bounce, this tracker can help you. The default implementation of the Google Analytics tracking code has some undesirable traits. The following scenarios help illustrate: </p>
+
+<ul>
+<li>User A arrives on your website. She finds a wealth of information she is looking for on the first landing page. She spends 15 minutes reading and then departs. By default, this is considered a bounce.</li>
+<li>More information on this subject, <a href="http://analytics.blogspot.com/2012/07/tracking-adjusted-bounce-rate-in-google.html">straight from Google</a>.</li>
+</ul><div class="highlight"><pre><span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span>
+    <span class="s2">"_gapTrackBounce"</span><span class="p">,</span>
+    <span class="mi">10</span> <span class="c1">// Number of seconds before this user is not considered a bounce.</span>
+<span class="p">]);</span>
+</pre></div>
+
+<hr><p><strong>gapTrackReads</strong></p>
 
 <p>Logs <code>gapRead</code> events every n seconds. Each new event label is updated as time progresses. For instance, with a 10 second cadence the first event label would be 10, the second would be 20, and so on.</p>
 
 <p>If you are puzzled as to why so many of your users have a time on site of 0 seconds, this tracker can help you. If you want to accurately test changes to your website and how they truly affect user engagement, this tracker can help you. The default implementation of the Google Analytics tracking code has some undesirable traits. The following scenarios help illustrate: </p>
 
 <ul>
-<li>User A arrives on your website. She finds a wealth of information she is looking for on the first landing page. She spends 15 minutes reading and then departs. By default, this is considered a bounce.</li>
-<li>User B arrives on your website. He finds a wealth of information he is looking for on the first landing page. He spends two hours reading and then departs. By default, the time on site for this user is 0 seconds.</li>
-<li>User C arrives on your website. He doesn't find what he is looking for on the first page, so 10 seconds after arriving he lands on the second, and final, page of his visit. He finds a wealth of information, and he spends 30 minutes reading and then departs. By default, the time on site for this user is 10 seconds.</li>
+<li>User A arrives on your website. He finds a wealth of information he is looking for on the first landing page. He spends two hours reading and then departs. By default, the time on site for this user is 0 seconds.</li>
+<li>User B arrives on your website. He doesn't find what he is looking for on the first page, so 10 seconds after arriving he lands on the second, and final, page of his visit. He finds a wealth of information, and he spends 30 minutes reading and then departs. By default, the time on site for this user is 10 seconds.</li>
 <li>You have redesigned your website hoping to improve user engagement (e.g. increase time on site and lower bounce rate). Because you used the default implementation of the Google Analytics code, your bounce rate is over stated and your time on site is under stated. After the redesign, you see positive numbers on both these fronts. Bounce rate is down and time on site is up. Both these data points are not only incorrect, but the opposite could be true. Your time on site could, in actuality, be lower than before. Your bounce rate could, in actuality, be higher than before.</li>
 <li>More information on this subject, <a href="http://analytics.blogspot.com/2012/07/tracking-adjusted-bounce-rate-in-google.html">straight from Google</a>.</li>
-</ul><div class="highlight"><pre><span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackReads"</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span> <span class="c1">// Polling cadence can be changed.</span>
+</ul><p>Polling cadence can be changed as well as the number of events total this tracker can utilize per page. There is a limit of <a href="https://developers.google.com/analytics/devguides/collection/gajs/limits-quotas">500 total events tracked per session</a>, so keep this in mind.</p>
+
+<div class="highlight"><pre><span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span>
+    <span class="s2">"_gapTrackReads"</span><span class="p">,</span>
+    <span class="mi">20</span><span class="p">,</span> <span class="c1">// Polling cadence, in seconds.</span>
+    <span class="mi">30</span> <span class="c1">// Maximum number of these events tracked per page.</span>
+<span class="p">]);</span>
 </pre></div>
 
 <hr><p><strong>gapTrackLinkClicks</strong></p>
@@ -86,26 +106,21 @@
 
 <p><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a></p>
       </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		<script type="text/javascript">
-			var _gap = _gap || [];
-			_gap.push(["_setAccount", "UA-20432336-1"]);
-			_gap.push(["_trackPageview"]);
-			_gap.push(["_gapTrackReads", 10]);
-			_gap.push(["_gapTrackClicks"]);
-			_gapDebug = 1;
-
-			(function() {
-				var gap = document.createElement("script");
-				gap.async = true;
-				gap.type = "text/javascript";
-				gap.src = "http://rockymadden.com/js/gap.js";
-
-				var s = document.getElementsByTagName("script")[0];
-				s.parentNode.insertBefore(gap, s);
-			})();
-		</script>
+		          <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-20432336-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
 
   </body>
 </html>
