@@ -35,7 +35,7 @@
 
 <h2>Installation</h2>
 
-<p>There is no need to include any of the default Google Analytics tracking code, as GAP takes care of all this for you. Simply <a href="https://raw.github.com/rockymadden/gap/master/gap.js">download the gap.js</a> file, place on your server, and update the noted fields below. That's it!</p>
+<p>There is no need to include any of the default Google Analytics tracking code, as GAP takes care of all this for you. Simply <a href="https://raw.github.com/rockymadden/gap/master/gap.min.js">download the gap.min.js</a> file, place on your server, and update the noted fields below. That's it!</p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">_gap</span> <span class="o">=</span> <span class="nx">_gap</span> <span class="o">||</span> <span class="p">[];</span>
 <span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_setAccount"</span><span class="p">,</span> <span class="s2">"UA-XXXXXX-X"</span><span class="p">]);</span> <span class="c1">// CHANGE.</span>
@@ -48,7 +48,7 @@
     <span class="kd">var</span> <span class="nx">gap</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"script"</span><span class="p">);</span>
     <span class="nx">gap</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
     <span class="nx">gap</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">"text/javascript"</span><span class="p">;</span>
-    <span class="nx">gap</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">"/js/gap.js"</span><span class="p">;</span> <span class="c1">// CHANGE.</span>
+    <span class="nx">gap</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">"/js/gap.min.js"</span><span class="p">;</span> <span class="c1">// CHANGE.</span>
 
     <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">"script"</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
     <span class="nx">s</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">gap</span><span class="p">,</span> <span class="nx">s</span><span class="p">);</span>
