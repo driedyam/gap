@@ -59,7 +59,7 @@
 
 <p><strong>gapTrackBounce</strong></p>
 
-<p>Logs a single <code>gapBounce</code> event after n seconds. </p>
+<p>Logs a single <code>gapBounce</code> event after n seconds. This event will only fire once per session.</p>
 
 <p>If you do not consider users who spend long durations, or even minutes, on their first and only page visit on your website a bounce, this tracker can help you. The default implementation of the Google Analytics tracking code has some undesirable traits. The following scenarios help illustrate: </p>
 
@@ -94,7 +94,7 @@
 
 <hr><p><strong>gapTrackLinkClicks</strong></p>
 
-<p>Tracker which logs <code>a</code> and <code>button</code> mousedown events (i.e. user clicks) via event delegation. Event action logged is <code>gapLinkClick</code>. Event label logged is <code>#{linkName} (#{linkURL})</code>.</p>
+<p>Logs <code>a</code> and <code>button</code> mousedown events (i.e. user clicks) via event delegation. Event action logged is <code>gapLinkClick</code>. Event label logged is <code>#{linkName} (#{linkURL})</code>.</p>
 
 <div class="highlight"><pre><span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackLinkClicks"</span><span class="p">]);</span>
 </pre></div>
