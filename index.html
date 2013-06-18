@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Google Analytics automatic Push (GAP) - Automatic Google Analytics tracking of user behavior</title>
+    <title>Google Analytics automatic Push (GAP) by rockymadden</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -17,7 +17,7 @@
     <div class="wrapper">
       <header>
         <h1 class="header">Google Analytics automatic Push (GAP)</h1>
-        <p class="header">Automatic Google Analytics tracking of user behavior.</p>
+        <p class="header">Automatic tracking of user behavior via Google Analytics.</p>
 
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/rockymadden/gap/zipball/master">Download ZIP</a></li>
@@ -25,23 +25,35 @@
           <li><a class="buttons github" href="https://github.com/rockymadden/gap">View On GitHub</a></li>
         </ul>
 
-        <p class="header">This project is maintained by <a class="header name" href="http://rockymadden.com/">Rocky Madden</a></p>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/rockymadden">rockymadden</a></p>
 
 
       </header>
-      <section><h2>Overview</h2>
+      <section>
         <p>Dead simple wrapper around the Google Analytics API which provides automatic tracking of user behaviors via events. Want to see the event tracking in action? Open up your JavaScript console.</p>
 
-<h2>Installation</h2>
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>There is no need to include any of the default Google Analytics tracking code, as GAP takes care of all this for you. Simply <a href="https://raw.github.com/rockymadden/gap/master/gap.min.js">download the gap.min.js</a> file, place on your server, and update the noted fields below. That's it!</p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">_gap</span> <span class="o">=</span> <span class="nx">_gap</span> <span class="o">||</span> <span class="p">[];</span>
+
+<span class="c1">// Standard Google Analytics pushes, just with _gap.push. </span>
+<span class="c1">// You can push anything, just like normal, via _gap.push instead of _gaq.push.</span>
 <span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_setAccount"</span><span class="p">,</span> <span class="s2">"UA-XXXXXX-X"</span><span class="p">]);</span> <span class="c1">// CHANGE.</span>
 <span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_trackPageview"</span><span class="p">]);</span>
-<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackBounceViaTime"</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span>
-<span class="c1">//_gap.push(["_gapTrackBounceViaScroll", 50]); Track bounces via time or scrolling depth.</span>
-<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackReads"</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]);</span>
+
+<span class="c1">// With both bounce trackers active, any user who scrolls down 50%</span>
+<span class="c1">// OR stays 10 seconds is not counted as a bounce. You can use just one too.</span>
+<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackBounceViaTime"</span><span class="p">,</span> <span class="mi">10</span><span class="p">]);</span> <span class="c1">// Change seconds, if needed.</span>
+<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackBounceViaScroll"</span><span class="p">,</span> <span class="mi">50</span><span class="p">]);</span> <span class="c1">// Change percentage, if needed.</span>
+
+<span class="c1">// Every 20 seconds, push a read event so that time on site is more accurate.</span>
+<span class="c1">// Only allow 30 of these read events per page.</span>
+<span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackReads"</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]);</span> <span class="c1">// Change cadence and max read events per page, if needed.</span>
+
+<span class="c1">// Anytime a user clicks a link, internal or external, push the event.</span>
 <span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackLinkClicks"</span><span class="p">]);</span>
 
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -55,7 +67,8 @@
 <span class="p">})();</span>
 </pre></div>
 
-<h2>Trackers</h2>
+<h2>
+<a name="trackers" class="anchor" href="#trackers"><span class="octicon octicon-link"></span></a>Trackers</h2>
 
 <p><strong>gapTrackBounceViaScroll</strong></p>
 
@@ -114,36 +127,30 @@
 <div class="highlight"><pre><span class="nx">_gap</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s2">"_gapTrackLinkClicks"</span><span class="p">]);</span>
 </pre></div>
 
-<h2>Versioning</h2>
+<h2>
+<a name="versioning" class="anchor" href="#versioning"><span class="octicon octicon-link"></span></a>Versioning</h2>
 
 <p><a href="http://semver.org/">Semantic Versioning v2.0</a></p>
 
-<h2>License</h2>
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a></p>
       </section>
-
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 		          <script type="text/javascript">
-var _gap = _gap || [];
-_gap.push(["_setAccount", "UA-20432336-1"]); // CHANGE.
-_gap.push(["_trackPageview"]);
-_gap.push(["_gapTrackBounceViaTime", 10]);
-_gap.push(["_gapTrackBounceViaScroll", 50]);
-_gap.push(["_gapTrackReads", 20, 30]);
-_gap.push(["_gapTrackLinkClicks"]);
-_gapDebug = true;
-
-(function() {
-    var gap = document.createElement("script");
-    gap.async = true;
-    gap.type = "text/javascript";
-    gap.src = "http://rockymadden.com/js/gap.min.js"; // CHANGE.
-
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(gap, s);
-})();
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-20432336-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
           </script>
 
   </body>
